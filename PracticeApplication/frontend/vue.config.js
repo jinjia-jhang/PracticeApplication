@@ -1,12 +1,11 @@
 // const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  // productionSourceMap: false,
-  // publicPath: process.env.NODE_ENV === 'production' ? '/v1' : '/v1',
+  productionSourceMap: false,
+  publicPath: process.env.NODE_ENV === 'production' ? '/v1' : '/v1',
   outputDir: '../wwwroot/',
-  //indexPath: 'index.html'
-
-  /*
+  indexPath: 'index.html',
+  
   chainWebpack: config => {
     config.module.rule('js').exclude.add(/\.worker\.js$/)
 
@@ -27,7 +26,5 @@ module.exports = {
     devtool: 'source-map'
 
   },
-  filenameHashing: false,
-
-  */
+  filenameHashing: false
 }

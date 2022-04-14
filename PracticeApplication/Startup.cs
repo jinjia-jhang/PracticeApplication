@@ -12,6 +12,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using PracticeApplication.Interface;
+using PracticeApplication.Service;
 
 namespace PracticeApplication
 {
@@ -34,7 +36,14 @@ namespace PracticeApplication
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-
+            
+            services.AddScoped<ICalculateService, CalculateService>();
+            
+            services.AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.PropertyNamingPolicy = null;
+                });;
 
             // services.AddRazorPages();
         }
@@ -65,13 +74,12 @@ namespace PracticeApplication
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
+                // endpoints.MapRazorPages();
+                endpoints.MapControllers();
             });
 
             app.Use(async (context, next) =>
             {
-                await next();
-
                 if (context.Response.StatusCode == 404 &&                       // 該資源不存在
                     !System.IO.Path.HasExtension(context.Request.Path.Value) && // 網址最後沒有帶副檔名
                     !context.Request.Path.Value.StartsWith("/api"))             // 網址不是 /api 開頭（不是發送 API 需求）
@@ -81,6 +89,8 @@ namespace PracticeApplication
 
                     await next(); 
                 }
+                
+                await next();
             });
         }
     }
