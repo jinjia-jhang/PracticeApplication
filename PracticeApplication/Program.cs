@@ -21,6 +21,7 @@ namespace PracticeApplication
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    Console.WriteLine("add-cat");
                 });
     }
 }
