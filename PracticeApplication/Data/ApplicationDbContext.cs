@@ -13,6 +13,7 @@ namespace PracticeApplication.Data
         {
             Console.WriteLine("add-cat");
             Console.WriteLine("add-dog");
+            Console.WriteLine("add-dog2");
         }
     }
 }
