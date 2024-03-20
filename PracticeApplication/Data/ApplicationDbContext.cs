@@ -12,6 +12,7 @@ namespace PracticeApplication.Data
             : base(options)
         {
             Console.WriteLine("add-dog");
+            Console.WriteLine("add-dog2");
         }
     }
 }
